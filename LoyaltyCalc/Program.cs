@@ -11,8 +11,5 @@ while ((line =Console.ReadLine()) != null && line != "")
 string result = data.ToString();
 Console.WriteLine(LoyaltyCalc.OrderModel.GetLoyalty(result));
 
-while (true)
-{
-    Console.ReadLine();
-}
+Console.ReadLine();
 
