@@ -1,9 +1,18 @@
-﻿using Telegram.Bot;
+﻿using LoyaltyCalc;
+using System.Text;
+using Telegram.Bot;
+using Telegram.Bot.Types;
 
-class Program
+//TODO: Add a normal logic? don`t use AI
+public class Program
 {
-    private static string _token = "7792348424:AAECbLaoJxjlA20wnFAzVTThvZmHV75TKW4";
-    private static readonly TelegramBotClient Bot = new TelegramBotClient(_token);
+    private static readonly string _token = "7792348424:AAECbLaoJxjlA20wnFAzVTThvZmHV75TKW4";
+
+
+    public static void Main()
+    {
+
+    }
 
     
 }
