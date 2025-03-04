@@ -10,7 +10,7 @@
 
         public OrderModel (DateTime date, string orderNumber, decimal amount, string status)
         {
-            //TODO: Add validation
+            //TODO: Add validation (maybe)
             Date = date;
             OrderNumber = orderNumber;
             Amount = amount;
