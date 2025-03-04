@@ -36,7 +36,13 @@
                 TotalRejected == ((LoyaltyResult)obj).TotalRejected &&
                 TotalLoyalty == ((LoyaltyResult)obj).TotalLoyalty;
         }
+
+        public override string ToString()
+        {
+            return $"Виконаних замовлень: {TotalCompleted}\n" +
+                $"Відмінених замовлень: {TotalRejected}\n" +
+                $"Сума виконаних замовлень: {Math.Round(TotalAmount)}грн\n" +
+                $"Лояльність: {Math.Round(TotalLoyalty)}грн\n";
+        }
     }
-
-
 }

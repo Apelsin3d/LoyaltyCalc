@@ -1,5 +1,4 @@
 using LoyaltyCalc;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LoyaltyCalcTest
 {
@@ -32,7 +31,7 @@ namespace LoyaltyCalcTest
                  1099.00m,
                  "Выполнен (Франчайзинг)"
             ));
-            Assert.Equal(order, new DataParcer().StringParce(data));
+            Assert.Equal(order, DataParcer.StringParce(data));
         }
 
         [Fact]
@@ -56,7 +55,7 @@ namespace LoyaltyCalcTest
                 999.00m,
                 "Выполнен (Франчайзинг)"
             ));
-            Assert.Equal(order, new DataParcer().StringParce(data));
+            Assert.Equal(order, DataParcer.StringParce(data));
         }
     }
 }

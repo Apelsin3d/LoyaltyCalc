@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LoyaltyCalc\LoyaltyCalc.csproj" />
+    <ProjectReference Include="..\LoyaltyCalc\LoyaltyCalcLogic.csproj" />
   </ItemGroup>
 
   <ItemGroup>

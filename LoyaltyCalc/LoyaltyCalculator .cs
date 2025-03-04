@@ -46,6 +46,8 @@
                 {
                     loyaltyResult.TotalRejected++;
                 }
+
+                loyaltyResult.TotalLoyalty = loyaltyResult.TotalAmount * 0.03m;
             }
             return loyaltyResult;
         }

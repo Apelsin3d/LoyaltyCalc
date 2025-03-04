@@ -33,6 +33,7 @@ namespace LoyaltyCalcTest
             loyaltyResult.TotalCompleted = 3;
             loyaltyResult.TotalAmount = 1746.00m;
             loyaltyResult.YearValuePairs.Add(2025, 3);
+            loyaltyResult.TotalLoyalty = loyaltyResult.TotalAmount * 0.03m;
 
             Assert.Equal(loyaltyResult, LoyaltyCalculator.LoyaltyCalculate(orderList));
         }
