@@ -1,34 +1,44 @@
-﻿namespace LoyaltyCalc
+﻿using System.Globalization;
+
+namespace LoyaltyCalc
 {
     public class DataParcer
     {
-        public List<OrderModel> StringParce(string data) 
+        public List<OrderModel> StringParce(string data)
         {
-            data.Replace("\r", "");
+            data = data.Replace("\r", "");
             var rows = data.Split("\n");
 
             var listOrder = new List<OrderModel>();
 
-            foreach (var row in rows)
+            foreach (var row in rows.Skip(1)) // Skip header
             {
-
-                if (row == "Дата\tНомер\tСумма\tВид продажи\r")
+                if (string.IsNullOrWhiteSpace(row))
                 {
-                    rows = rows.Skip(1).ToArray();
+                    continue;
                 }
-                else if(row == "" || row.Length < 4)
+                var column = row.Split("\t");
+                if (!DateTime.TryParse(column[0], out var date))
                 {
-                    rows = rows.Take(rows.Length - 1).ToArray();
+                    continue;
                 }
-                var columns = row.Split("\t");
-                var date = DateTime.Parse(columns[0]);
-                var number = columns[1];
-                var price = decimal.Parse(columns[2]);
-                var status = columns[3];
+                var number = column[1].Trim();
+                if (string.IsNullOrWhiteSpace(number))
+                {
+                    continue;
+                }
+                if (!decimal.TryParse(column[2].Replace("\u00A0", "").Replace(" ", "").Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture, out var price))
+                {
+                    continue;
+                }
+                var status = column[3].Trim();
+                if (string.IsNullOrWhiteSpace(status))
+                {
+                    continue;
+                }
 
                 var order = new OrderModel(date, number, price, status);
                 listOrder.Add(order);
-
             }
             return listOrder;
         }

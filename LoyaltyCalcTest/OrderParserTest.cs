@@ -1,4 +1,5 @@
 using LoyaltyCalc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LoyaltyCalcTest
 {
@@ -31,7 +32,30 @@ namespace LoyaltyCalcTest
                  1099.00m,
                  "Выполнен (Франчайзинг)"
             ));
+            Assert.Equal(order, new DataParcer().StringParce(data));
+        }
 
+        [Fact]
+        public void EmptyStringTest()
+        {
+            var data = "Дата\tНомер\tСумма\tВид продажи\r\n" +
+                "13.02.2025 11:15:38\tРОЗ504061779\t18 387,00\tВыполнен (из магазина)\r\n" +
+                "07.02.2025 11:27:41\tРОЗ503441490\t999,00\tВыполнен (Франчайзинг)\r\n" +
+                "22.01.2025 14:29:32\tРОЗ502005700\t\tВыполнен (Франчайзинг)";
+
+            var order = new List<OrderModel>();
+            order.Add(new OrderModel(
+                new DateTime(2025, 2, 13, 11, 15, 38),
+                "РОЗ504061779",
+                18387.00m,
+                "Выполнен (из магазина)"
+            ));
+            order.Add(new OrderModel(
+                new DateTime(2025, 2, 7, 11, 27, 41),
+                "РОЗ503441490",
+                999.00m,
+                "Выполнен (Франчайзинг)"
+            ));
             Assert.Equal(order, new DataParcer().StringParce(data));
         }
     }

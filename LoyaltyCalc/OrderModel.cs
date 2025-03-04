@@ -16,6 +16,18 @@
             Amount = amount;
             Status = status;
         }
+        //TODO: Add GetHashCode
+        public override bool Equals(object? obj)
+        {
+            if(obj is not OrderModel)
+            {
+                return false;
+            }
+            return Date == ((OrderModel)obj).Date &&
+                OrderNumber == ((OrderModel)obj).OrderNumber &&
+                Amount == ((OrderModel)obj).Amount &&
+                Status == ((OrderModel)obj).Status;
+        }
     }
 
 
