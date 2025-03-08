@@ -8,7 +8,7 @@ namespace TelegramBot
     {
         public static string GetToken()
         {
-            //Add validation for the token
+            //TODO: Add validation for the token
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();
