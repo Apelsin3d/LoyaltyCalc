@@ -6,19 +6,14 @@ namespace TelegramBot
 {
     public static class Helper
     {
-        public static string Token { get; private set; }
-
-        public static void SetToken(string token)
+        public static string GetToken()
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(AppContext.BaseDirectory)
-                .AddJsonFile("appsettings.json", optional: true)
+            //Add validation for the token
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
                 .Build();
-        }
 
-        public static string GetToken(string token)
-        {
-            return Token;
+            return configuration["BotConfig:Token"];
         }
     }
 }
