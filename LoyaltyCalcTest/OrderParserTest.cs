@@ -1,3 +1,5 @@
+// Ignore Spelling: Calc
+
 using LoyaltyCalc;
 
 namespace LoyaltyCalcTest
@@ -31,7 +33,7 @@ namespace LoyaltyCalcTest
                  1099.00m,
                  "Выполнен (Франчайзинг)"
             ));
-            Assert.Equal(order, DataParcer.StringParce(data));
+            Assert.Equal(order, DataParser.StringParse(data));
         }
 
         [Fact]
@@ -55,7 +57,7 @@ namespace LoyaltyCalcTest
                 999.00m,
                 "Выполнен (Франчайзинг)"
             ));
-            Assert.Equal(order, DataParcer.StringParce(data));
+            Assert.Equal(order, DataParser.StringParse(data));
         }
     }
 }

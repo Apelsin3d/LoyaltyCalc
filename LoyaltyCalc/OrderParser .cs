@@ -1,46 +1,40 @@
-﻿    using System.Globalization;
+﻿// Ignore Spelling: Calc
+
+using System.Text.RegularExpressions;
 
 namespace LoyaltyCalc
 {
-    public class DataParcer
+    public static class DataParser
     {
-        public static List<OrderModel> StringParce(string data)
+        public static List<OrderModel> StringParse(string data)
         {
+            var orders = new List<OrderModel>();
             data = data.Replace("\r", "");
-            var rows = data.Split("\n");
+            data = data.Replace("\t", " ");
+            var rows = new List<string>(data.Split('\n').Where(r => !string.IsNullOrWhiteSpace(r)).Skip(1)); // Skip header and empty lines
 
-            var listOrder = new List<OrderModel>();
+            var pattern = @"(?<Дата>\d{2}\.\d{2}\.\d{4} \d{2}:\d{2}:\d{2})\s*(?<Номер>РОЗ\d+)\s*(?<Сумма>[\d\s,]+)\s*(?<ВидПродажи>.+)";
 
-            foreach (var row in rows.Skip(1)) // Skip header
+            foreach (var item in rows)
             {
-                if (string.IsNullOrWhiteSpace(row))
-                {
-                    continue;
-                }
-                var column = row.Split("\t");
-                if (!DateTime.TryParse(column[0], out var date))
-                {
-                    continue;
-                }
-                var number = column[1].Trim();
-                if (string.IsNullOrWhiteSpace(number))
-                {
-                    continue;
-                }
-                if (!decimal.TryParse(column[2].Replace("\u00A0", "").Replace(" ", "").Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture, out var price))
-                {
-                    continue;
-                }
-                var status = column[3].Trim();
-                if (string.IsNullOrWhiteSpace(status))
-                {
-                    continue;
-                }
+                var match = Regex.Match(item, pattern);
 
-                var order = new OrderModel(date, number, price, status);
-                listOrder.Add(order);
+                if (match.Success)
+                {
+                        orders.Add(new OrderModel(
+                            DateTime.Parse(match.Groups["Дата"].Value),
+                            match.Groups["Номер"].Value,
+                            decimal.Parse(match.Groups["Сумма"].Value.Replace(" ", "")),
+                            match.Groups["ВидПродажи"].Value.Trim()
+                        ));
+                }
+                else
+                {
+                    Console.WriteLine($"Failed to parse line: {item}");
+                }
             }
-            return listOrder;
+
+            return orders;
         }
     }
 }

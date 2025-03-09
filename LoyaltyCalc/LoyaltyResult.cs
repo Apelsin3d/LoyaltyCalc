@@ -2,11 +2,11 @@
 {
     public class LoyaltyResult
     {
-        public Dictionary<int,int> YearValuePairs {get; set;} = new Dictionary<int,int>();
-        public decimal TotalAmount {get; set;}
-        public int TotalCompleted {get; set;}
-        public int TotalRejected {get; set;}
-        public decimal TotalLoyalty {get; set;}
+        public Dictionary<int, int> YearValuePairs { get; set; } = new Dictionary<int, int>();
+        public decimal TotalAmount { get; set; }
+        public int TotalCompleted { get; set; }
+        public int TotalRejected { get; set; }
+        public decimal TotalLoyalty { get; set; }
 
         public LoyaltyResult(Dictionary<int, int> yearValuePairs, decimal totalAmount, int totalCompleted, int totalRejected, decimal totalLoyalty)
         {
@@ -25,9 +25,8 @@
                 return false;
             }
 
-            var areEqual = 
+            var areEqual =
                 YearValuePairs.Count == ((LoyaltyResult)obj).YearValuePairs.Count && !YearValuePairs.Except(((LoyaltyResult)obj).YearValuePairs).Any();
-
 
 
             return areEqual &&
