@@ -27,6 +27,7 @@
                 OrderNumber == ((OrderModel)obj).OrderNumber &&
                 Amount == ((OrderModel)obj).Amount &&
                 Status == ((OrderModel)obj).Status;
+
         }
     }
 
