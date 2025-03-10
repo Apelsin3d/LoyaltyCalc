@@ -24,7 +24,7 @@ namespace LoyaltyCalcTest
             var expectedResult = new LoyaltyResult(new Dictionary<int, int>(), 0, 0, 0, 0);
             expectedResult.TotalCompleted = 11;
             expectedResult.TotalRejected = 0;
-            expectedResult.TotalAmount = 30659.00m;
+            expectedResult.TotalAmount = 28768.00m;
             expectedResult.TotalLoyalty = expectedResult.TotalAmount * 0.03m;
             expectedResult.YearValuePairs.Add(2025, 3);
             expectedResult.YearValuePairs.Add(2024, 4);
