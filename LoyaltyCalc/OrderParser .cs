@@ -13,7 +13,7 @@ namespace LoyaltyCalc
             data = data.Replace("\t", " ");
             var rows = new List<string>(data.Split('\n').Where(r => !string.IsNullOrWhiteSpace(r)).Skip(1)); // Skip header and empty lines
 
-            var pattern = @"(^[^а-яА-ЯҐґЄєІіЇї]*)(\S*)([^а-яА-ЯҐґЄєІіЇї]*)([а-яА-ЯҐґЄєІіЇї]*......[а-яА-ЯҐґЄєІіЇї]*.)";
+            var pattern = @"(^[^а-яА-ЯҐґЄєІіЇї]*)(\S*)([^а-яА-ЯҐґЄєІіЇї]*)(.*$)";
 
             foreach (var item in rows)
             {
