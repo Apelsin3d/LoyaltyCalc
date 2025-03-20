@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using LoyaltyCalc;
+using System.Collections.Concurrent;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -43,8 +44,11 @@ public static class Program
             if (UserMessages.TryGetValue(update.CallbackQuery.Message.Chat.Id, out var userMessage))
             {
                 //TODO: Add validation data 
-                //var str = userMessage;
-                //var pattern = @"()"
+                var data = userMessage;
+                var result = LoyaltyCalculator.LoyaltyCalculate(DataParser.StringParse(data));
+
+                await botClient.SendTextMessageAsync(update.CallbackQuery.Message.Chat.Id, result.ToString(), cancellationToken: cancellationToken);
+
 
             }
         }
